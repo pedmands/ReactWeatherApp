@@ -1,6 +1,6 @@
 # React/Redux Weather App #
 
-	A basic application to fetch weather data and display it. Please feel free to clone this repo to learn from it! If you want to contribute, just issue a pull request and I'll usually approve it within the hour, especially with an application this small as there is a lot to improve.
+A basic application to fetch weather data and display it. Please feel free to clone this repo to learn from it! If you want to contribute, just issue a pull request and I'll usually approve it within the hour, especially with an application this small as there is a lot to improve.
 
 ###Getting Started###
 
