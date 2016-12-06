@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchWeather } from '../actions/index';
 
-export default class SearchBar extends Component {
+class SearchBar extends Component {
   constructor(props) {
     super(props);
 
     this.state = { term: ''};
 
-    this.onInputChange = this.onInputChange.bind(this);
-    // binds this to onInputChange function, below,
+    // bind this to onInputChange function,
     // thus overriding the this.setState method in the function
+    this.onInputChange = this.onInputChange.bind(this);
+
+    // bind this to onFormSubmit function...
+    // "
+    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
   onInputChange(event) {
@@ -17,6 +24,11 @@ export default class SearchBar extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
+
+    // fetch weather data with fetchWeather Action Creator:
+    this.props.fetchWeather(this.state.term);
+    // set term to empty string, and re-render input:
+    this.setState({term: ''});
   }
 
   render(){
@@ -37,3 +49,11 @@ export default class SearchBar extends Component {
     );
   }
 }// SearchBar
+
+// flows Action down through Middleware and into reducers
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchWeather }, dispatch);
+}
+
+// passing null as mapStateToProps in order to pass mapDispatchToProps as second argument:
+export default connect(null, mapDispatchToProps)(SearchBar);
